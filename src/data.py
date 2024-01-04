@@ -14,6 +14,7 @@ currently_reading = [book1, book2]
 
 def get_book(id):
     """Return information about a specific book."""
+    id = int(id)
     for book in currently_reading:
         if book.id == id:
             return book
