@@ -16,22 +16,37 @@ def hello(name):
     click.echo(f"Hello {name}! \nusername: {current_user} \nToday is {datetime.date.today()}\n")
 
 @reading_cli.command("show-current")
-def currently_reading():
+@click.option('--id', required=False, help='ID of the book to show.')
+def currently_reading(id):
+    if id != None:
+        book = data.get_book(id)
+        click.echo(f"{book.id}. {book.title} - {book.total_pages} pages, {book.percent_finished_now}% complete")
+        return
+
     books = data.list_books()
 
     click.echo("You're currently reading: ")
     for i, book in enumerate(books):
         click.echo(f"{i+1}. {book.title} - {book.total_pages} pages, {book.percent_finished_now}% complete")
 
-    click.echo("\n")
+@reading_cli.command("show-total-pages")
+@click.option('--id', required=False, help='ID of the book to show.')
+def total_pages(id):
+    if id != None:
+        book = data.get_book(id)
+        pages_read = book.total_pages * (book.percent_finished_now - book.percent_finished_prev) / 100
+        click.echo(f"You've read {pages_read} pages of {book.title} today")
+        return
+
+    books = data.list_books()
     total_pages_read = 0
 
-    # for i in range(len(total_pages)):
-    #     pages_read = total_pages[i] * (percent_finished_now[i] - percent_finished_prev[i]) / 100
-    #     total_pages_read += pages_read
-    #     click.echo(f"Pages read for {currently_reading_books[i]}: {pages_read}")
+    for i, book in enumerate(books):
+        pages_read = book.total_pages * (book.percent_finished_now - book.percent_finished_prev) / 100
+        total_pages_read += pages_read
+        click.echo(f"Pages read for {book.title}: {pages_read}")
 
-    click.echo(f"\nYou've read {total_pages_read} pages today")
+    click.echo(f"\nYou've read {total_pages_read} pages in total today")
 
 def main():
     reading_cli()
