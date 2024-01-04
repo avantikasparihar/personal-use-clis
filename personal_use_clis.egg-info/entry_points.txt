@@ -1,0 +1,3 @@
+[console_scripts]
+hello-cli = src.hello_cli:hello
+reading-cli = src.reading_cli:hello

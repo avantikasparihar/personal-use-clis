@@ -1,0 +1,12 @@
+LICENSE
+README.md
+setup.py
+personal_use_clis.egg-info/PKG-INFO
+personal_use_clis.egg-info/SOURCES.txt
+personal_use_clis.egg-info/dependency_links.txt
+personal_use_clis.egg-info/entry_points.txt
+personal_use_clis.egg-info/requires.txt
+personal_use_clis.egg-info/top_level.txt
+src/__init__.py
+src/hello_cli.py
+src/reading_cli.py

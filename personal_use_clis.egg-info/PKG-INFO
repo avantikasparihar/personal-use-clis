@@ -1,0 +1,5 @@
+Metadata-Version: 2.1
+Name: personal-use-clis
+Version: 0.1
+License-File: LICENSE
+Requires-Dist: click==8.0.3
