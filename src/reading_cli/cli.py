@@ -3,7 +3,7 @@ import datetime
 import os
 import click
 
-import data
+from . import data
 
 @click.group("reading-cli")
 def reading_cli():

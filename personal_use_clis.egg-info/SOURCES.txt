@@ -8,5 +8,8 @@ personal_use_clis.egg-info/entry_points.txt
 personal_use_clis.egg-info/requires.txt
 personal_use_clis.egg-info/top_level.txt
 src/__init__.py
-src/hello_cli.py
-src/reading_cli.py
+src/hello_cli/__init__.py
+src/hello_cli/cli.py
+src/reading_cli/__init__.py
+src/reading_cli/cli.py
+src/reading_cli/data.py

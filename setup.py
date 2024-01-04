@@ -9,8 +9,8 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'hello-cli=src.hello_cli:hello',
-            'reading-cli=src.reading_cli:hello'
+            'hello-cli=src.hello_cli.cli:hello',
+            'reading-cli=src.reading_cli.cli:reading_cli'
         ],
     },
 )
