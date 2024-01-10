@@ -3,7 +3,7 @@ import datetime
 import os
 import click
 
-from . import data
+from data.data import get_book, list_books
 
 @click.group("reading-cli")
 def reading_cli():
@@ -19,11 +19,11 @@ def hello(name):
 @click.option('--id', required=False, help='ID of the book to show.')
 def currently_reading(id):
     if id != None:
-        book = data.get_book(id)
+        book = get_book(id)
         click.echo(f"{book.id}. {book.title} - {book.total_pages} pages, {book.percent_finished_now}% complete")
         return
 
-    books = data.list_books()
+    books = list_books()
 
     click.echo("You're currently reading: ")
     for i, book in enumerate(books):
@@ -33,12 +33,12 @@ def currently_reading(id):
 @click.option('--id', required=False, help='ID of the book to show.')
 def total_pages(id):
     if id != None:
-        book = data.get_book(id)
+        book = get_book(id)
         pages_read = book.total_pages * (book.percent_finished_now - book.percent_finished_prev) / 100
         click.echo(f"You've read {pages_read} pages of {book.title} today")
         return
 
-    books = data.list_books()
+    books = list_books()
     total_pages_read = 0
 
     for i, book in enumerate(books):

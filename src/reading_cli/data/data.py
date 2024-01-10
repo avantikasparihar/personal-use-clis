@@ -1,3 +1,5 @@
+import os
+import yaml
 
 class Book:
     def __init__(self, id, title, total_pages, percent_finished_prev, percent_finished_now):
@@ -7,10 +9,16 @@ class Book:
         self.percent_finished_prev = percent_finished_prev
         self.percent_finished_now = percent_finished_now
 
-book1 = Book(1,"The Magic of Reality", 270, 35, 35)
-book2 = Book(2,"Fundamentals of Software Architecture", 419, 18, 28)
+# Get the directory of the current script
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
-currently_reading = [book1, book2]
+# Join the directory path and the filename to get the full path
+file_path = os.path.join(dir_path, 'books.yaml')
+
+with open(file_path, 'r') as file:
+    books_data = yaml.safe_load(file)
+
+currently_reading = [Book(**book) for book in books_data]
 
 def get_book(id):
     """Return information about a specific book."""
