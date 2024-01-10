@@ -1,5 +1,4 @@
-import os
-import yaml
+from abc import ABC, abstractmethod
 
 class Book:
     def __init__(self, id, title, total_pages, percent_finished_prev, percent_finished_now):
@@ -9,49 +8,23 @@ class Book:
         self.percent_finished_prev = percent_finished_prev
         self.percent_finished_now = percent_finished_now
 
-# Get the directory of the current script
-dir_path = os.path.dirname(os.path.realpath(__file__))
+class BooksManager(ABC):
+    @abstractmethod
+    def get_book(self, id):
+        pass
 
-# Join the directory path and the filename to get the full path
-file_path = os.path.join(dir_path, 'books.yaml')
+    @abstractmethod
+    def list_books(self):
+        pass
 
-with open(file_path, 'r') as file:
-    books_data = yaml.safe_load(file)
+    @abstractmethod
+    def create_book(self, title, total_pages, percent_finished_prev, percent_finished_now):
+        pass
 
-currently_reading = [Book(**book) for book in books_data]
+    @abstractmethod
+    def update_book(self, title, new_total_pages, new_percent_finished_now):
+        pass
 
-def get_book(id):
-    """Return information about a specific book."""
-    id = int(id)
-    for book in currently_reading:
-        if book.id == id:
-            return book
-    print("Book not found.")
-
-def list_books():
-    return currently_reading
-
-def create_book(title, total_pages, percent_finished_prev, percent_finished_now):
-    """Create a new book and add it to the list."""
-    book = Book(title, total_pages, percent_finished_prev, percent_finished_now)
-    currently_reading.append(book)
-    return book
-
-def update_book(title, new_total_pages, new_percent_finished_now):
-    """Update information about a specific book."""
-    book = get_book(title)
-    if book:
-        book.total_pages = new_total_pages
-        book.percent_finished_now = new_percent_finished_now
-        print("Book updated successfully.")
-        return book
-    print("Book not found.")
-
-def delete_book(title):
-    """Delete a specific book from the list."""
-    book = get_book(title)
-    if book:
-        currently_reading.remove(book)
-        print("Book deleted successfully.")
-        return
-    print("Book not found.")
+    @abstractmethod
+    def delete_book(self, title):
+        pass
