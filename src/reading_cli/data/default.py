@@ -50,7 +50,7 @@ class DefaultBooksManager(BooksManager):
         book = self.get_book(id)
         if book:
             currently_reading.remove(book)
-            print("Book deleted successfully.")
+            update_yaml()
             return
         print("Book not found.")
         pass
