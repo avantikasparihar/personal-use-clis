@@ -22,9 +22,9 @@ class BooksManager(ABC):
         pass
 
     @abstractmethod
-    def update_book(self, title, new_total_pages, new_percent_finished_now):
+    def update_book(self, updated_book):
         pass
 
     @abstractmethod
-    def delete_book(self, title):
+    def delete_book(self, id):
         pass

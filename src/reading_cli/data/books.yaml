@@ -1,17 +1,15 @@
 - id: 1
-  title: "The Magic of Reality"
-  total_pages: 270
-  percent_finished_prev: 35
   percent_finished_now: 35
-
+  percent_finished_prev: 35
+  title: The Magic of Reality
+  total_pages: 270
 - id: 2
-  title: "Fundamentals of Software Architecture"
-  total_pages: 419
+  percent_finished_now: 42
   percent_finished_prev: 40
-  percent_finished_now: 40
-
+  title: Fundamentals of Software Architecture
+  total_pages: 419
 - id: 3
-  title: "Tuesdays with Morrie"
-  total_pages: 210
+  percent_finished_now: 18
   percent_finished_prev: 0
-  percent_finished_now: 16
+  title: Tuesdays with Morrie
+  total_pages: 210
