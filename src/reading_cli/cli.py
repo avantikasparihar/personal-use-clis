@@ -17,7 +17,7 @@ def hello(name):
     current_user = os.getlogin()
     click.echo(f"Hello {name}! \nusername: {current_user} \nToday is {datetime.date.today()}\n")
 
-@reading_cli.command("show-current")
+@reading_cli.command("currently-reading")
 @click.option('--id', required=False, help='ID of the book to show.')
 def currently_reading(id):
     if id != None:
@@ -31,7 +31,7 @@ def currently_reading(id):
     for i, book in enumerate(books):
         click.echo(f"{i+1}. {book.title} - {book.total_pages} pages, {book.percent_finished_now}% complete")
 
-@reading_cli.command("show-total-pages")
+@reading_cli.command("total-pages-read")
 @click.option('--id', required=False, help='ID of the book to show.')
 def total_pages(id):
     if id != None:
@@ -49,6 +49,14 @@ def total_pages(id):
         click.echo(f"Pages read for {book.title}: {pages_read}")
 
     click.echo(f"\nYou've read {total_pages_read} pages in total today")
+
+@reading_cli.command("update-progress")
+@click.option('--id', type=click.INT, required=True, help='ID of the book to update.')
+@click.option('--percent', type=click.INT, required=True, help='New percent complete.')
+def update_progress(id, percent):
+    book = books_manager.get_book(id)
+    book.percent_finished_now = int(percent)
+    books_manager.update_book(book)
 
 def main():
     reading_cli()

@@ -34,14 +34,14 @@ class DefaultBooksManager(BooksManager):
         return book
         pass
 
-    def update_book(self, id, new_total_pages, new_percent_finished_now):
+    def update_book(self, updated_book):
         """Update information about a specific book."""
-        book = self.get_book(id)
-        if book:
-            book.total_pages = new_total_pages
-            book.percent_finished_now = new_percent_finished_now
-            print("Book updated successfully.")
-            return book
+        for i, book in enumerate(currently_reading):
+            if book.id == updated_book.id:
+                currently_reading[i] = updated_book
+                update_yaml()
+                print("Book updated successfully.")
+                return updated_book
         print("Book not found.")
         pass
 
@@ -54,3 +54,11 @@ class DefaultBooksManager(BooksManager):
             return
         print("Book not found.")
         pass
+
+def update_yaml():
+    # Convert the currently_reading list to a list of dictionaries
+    books_data = [vars(b) for b in currently_reading]
+
+    # Write the updated list back to the YAML file
+    with open(file_path, 'w') as file:
+        yaml.safe_dump(books_data, file)
