@@ -5,11 +5,11 @@
   total_pages: 270
 - id: 2
   percent_finished_now: 42
-  percent_finished_prev: 40
+  percent_finished_prev: 42
   title: Fundamentals of Software Architecture
   total_pages: 419
 - id: 3
   percent_finished_now: 18
-  percent_finished_prev: 0
+  percent_finished_prev: 18
   title: Tuesdays with Morrie
   total_pages: 210
