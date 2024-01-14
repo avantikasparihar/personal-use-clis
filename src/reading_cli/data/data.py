@@ -18,7 +18,7 @@ class BooksManager(ABC):
         pass
 
     @abstractmethod
-    def create_book(self, title, total_pages, percent_finished_prev, percent_finished_now):
+    def create_book(self, new_book):
         pass
 
     @abstractmethod

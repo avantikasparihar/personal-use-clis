@@ -4,6 +4,7 @@ import os
 import click
 
 from data.default import DefaultBooksManager
+from data.data import Book
 
 books_manager = DefaultBooksManager()
 
@@ -16,6 +17,14 @@ def reading_cli():
 def hello(name):
     current_user = os.getlogin()
     click.echo(f"Hello {name}! \nusername: {current_user} \nToday is {datetime.date.today()}\n")
+
+@reading_cli.command("new-book")
+@click.option('--title', required=True, help='Title of the book to add.')
+@click.option('--total-pages', type=click.INT, required=True, help='Total number of pages in the book.')
+def add_book(title, total_pages):
+    new_book = Book(id=0, title=title, total_pages=int(total_pages), percent_finished_prev=0, percent_finished_now=0)
+    books_manager.create_book(new_book)
+    click.echo(f"Added {new_book.title} to currently reading.")
 
 @reading_cli.command("currently-reading")
 @click.option('--id', required=False, help='ID of the book to show.')

@@ -27,11 +27,12 @@ class DefaultBooksManager(BooksManager):
         return currently_reading
         pass
 
-    def create_book(self, title, total_pages, percent_finished_prev, percent_finished_now):
+    def create_book(self, new_book):
         """Create a new book and add it to the list."""
-        book = Book(title, total_pages, percent_finished_prev, percent_finished_now)
-        currently_reading.append(book)
-        return book
+        new_book.id = len(currently_reading) + 1
+        currently_reading.append(new_book)
+        update_yaml()
+        return new_book
         pass
 
     def update_book(self, updated_book):
