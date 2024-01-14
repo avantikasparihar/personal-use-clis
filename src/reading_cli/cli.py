@@ -67,7 +67,7 @@ def update_progress(id, percent):
     book.percent_finished_now = int(percent)
     books_manager.update_book(book)
 
-    click.echo(f"Progress updated for {book.title}")
+    click.echo(f"Progress updated for {book.title}.")
 
 @reading_cli.command("reset-day")
 def reset_day():
@@ -77,7 +77,14 @@ def reset_day():
         book.percent_finished_prev = book.percent_finished_now
         books_manager.update_book(book)
 
-    click.echo("Progress reset for all books")
+    click.echo("Progress reset for all books.")
+
+@reading_cli.command("delete-book")
+@click.option('--id', type=click.INT, required=True, help='ID of the book to delete.')
+def delete_book(id):
+    books_manager.delete_book(id)
+
+    click.echo(f"Book {id} deleted from currently reading.")
 
 def main():
     reading_cli()
