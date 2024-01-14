@@ -12,4 +12,6 @@ src/hello_cli/__init__.py
 src/hello_cli/cli.py
 src/reading_cli/__init__.py
 src/reading_cli/cli.py
-src/reading_cli/data.py
+src/reading_cli/data/__init__.py
+src/reading_cli/data/data.py
+src/reading_cli/data/default.py
