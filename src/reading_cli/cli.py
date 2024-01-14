@@ -58,6 +58,18 @@ def update_progress(id, percent):
     book.percent_finished_now = int(percent)
     books_manager.update_book(book)
 
+    click.echo(f"Progress updated for {book.title}")
+
+@reading_cli.command("reset-day")
+def reset_day():
+    books = books_manager.list_books()
+
+    for i, book in enumerate(books):
+        book.percent_finished_prev = book.percent_finished_now
+        books_manager.update_book(book)
+
+    click.echo("Progress reset for all books")
+
 def main():
     reading_cli()
 

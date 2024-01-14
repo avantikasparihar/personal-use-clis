@@ -40,7 +40,6 @@ class DefaultBooksManager(BooksManager):
             if book.id == updated_book.id:
                 currently_reading[i] = updated_book
                 update_yaml()
-                print("Book updated successfully.")
                 return updated_book
         print("Book not found.")
         pass
